@@ -113,7 +113,7 @@ CREATE TABLE consultas (
      {
          $city = $request->input('city');
          $country = $request->input('country');
-         $apiKey = '474defd3503ea00be11b22200d6e0a50';
+         $apiKey = 'ApiKey';
          $apiUrl = "https://api.openweathermap.org/data/2.5/weather?q={$city},{$country}&units=metric&appid={$apiKey}";
 
          $response = Http::get($apiUrl);
