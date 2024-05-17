@@ -89,7 +89,7 @@ Para las peticiones HTTP, se ha configurado un middleware `VerifyCsrfToken` en L
 
 ## Estructura de la Tabla de la base de datos MySql
 
-````sql
+```sql
 CREATE TABLE consultas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pais VARCHAR(255) NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE consultas (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
+```
 
 ### Controladores
 
@@ -130,24 +130,21 @@ CREATE TABLE consultas (
    Este método recibe la moneda de origen, la moneda de destino y la cantidad a convertir, y utiliza estos parámetros para realizar la conversión de moneda utilizando una API externa..
 
     ```php
-     public function convertirMoneda(Request $request)
-     {
-         $from = 'COP';
-         $to = $request->get('to');
-         $amount = $request->get('amount');
+    public function convertirMoneda(Request $request)
+    {
+        $from = 'COP';
+        $to = $request->get('to');
+        $amount = $request->get('amount');
 
-         $response = Http::withHeaders([
-             'X-RapidAPI-Key' => 'TUAPIKEY',
-             'X-RapidAPI-Host' => 'currency-conversion-and-exchange-rates.p.rapidapi.com',
-         ])->get('https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert', [
-             'from' => $from,
-             'to' => $to,
-             'amount' => $amount,
-         ]);
+        $response = Http::withHeaders([
+            'X-RapidAPI-Key' => 'TUAPIKEY',
+            'X-RapidAPI-Host' => 'currency-conversion-and-exchange-rates.p.rapidapi.com',
+        ])->get('https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert', [
+            'from' => $from,
+            'to' => $to,
+            'amount' => $amount,
+        ]);
 
-         return $response->json();
-     }
+        return $response->json();
+    }
     ```
-
-
-````
